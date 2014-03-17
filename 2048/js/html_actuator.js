@@ -129,6 +129,8 @@ HTMLActuator.prototype.message = function (won) {
 
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "end", type, this.score);
+
+   this.clearMessage();
   }
 
   this.messageContainer.classList.add(type);
