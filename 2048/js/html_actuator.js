@@ -117,7 +117,11 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 HTMLActuator.prototype.updateUndoButton = function (active) {
   if ((active)||(moved.over==true)) {
     this.undoButton.setAttribute ("class", "active");
-    moved.over==false;
+    if(moved.won==true){
+      moved.won=true;
+    }
+    else
+      moved.over==false;
   }
   else {
     this.undoButton.setAttribute ("class", "inactive");
