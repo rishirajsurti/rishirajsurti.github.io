@@ -50,16 +50,15 @@ KeyboardInputManager.prototype.listen = function () {
       }
 
       if (event.which === 32) self.restart.bind(self)(event);
+      if (event.which === 8) self.undo.bind(self)(event);
     }
   });
 
-  var retry = document.querySelector(".retry-button");
+  var retry = document.getElementsByClassName("retry-button")[0];
   retry.addEventListener("click", this.restart.bind(this));
-  retry.addEventListener("touchend", this.restart.bind(this));
 
-  var keepPlaying = document.querySelector(".keep-playing-button");
-  keepPlaying.addEventListener("click", this.keepPlaying.bind(this));
-  keepPlaying.addEventListener("touchend", this.keepPlaying.bind(this));
+  var undo = document.getElementById("undo-button");
+  undo.addEventListener("click", this.undo.bind(this));
 
   // Listen to swipe events
   var touchStartClientX, touchStartClientY;
@@ -98,7 +97,7 @@ KeyboardInputManager.prototype.restart = function (event) {
   this.emit("restart");
 };
 
-KeyboardInputManager.prototype.keepPlaying = function (event) {
+KeyboardInputManager.prototype.undo = function (event) {
   event.preventDefault();
-  this.emit("keepPlaying");
+  this.emit("undo");
 };
