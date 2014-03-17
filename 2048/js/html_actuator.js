@@ -1,3 +1,4 @@
+
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
@@ -115,13 +116,8 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.updateUndoButton = function (active) {
-  if ((active)||(moved.over==true)) {
+  if (active) {
     this.undoButton.setAttribute ("class", "active");
-    if(moved.won==true){
-      moved.won=true;
-    }
-    else
-      moved.over==false;
   }
   else {
     this.undoButton.setAttribute ("class", "inactive");
@@ -129,13 +125,11 @@ HTMLActuator.prototype.updateUndoButton = function (active) {
 };
 
 HTMLActuator.prototype.message = function (won) {
-  var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
+  var type    = won ? "game-won" : "";
+  var message = won ? "You win!" : "";
 
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "end", type, this.score);
-
-   this.clearMessage();
   }
 
   this.messageContainer.classList.add(type);
